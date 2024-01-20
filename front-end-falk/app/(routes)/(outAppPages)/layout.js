@@ -1,5 +1,5 @@
+import React from 'react'
 import { Outfit } from 'next/font/google'
-import './globals.css'
 
 
 const inter = Outfit({ subsets: ['latin'] })
@@ -15,13 +15,14 @@ export const metadata = {
   manifest: '/site.webmanifest'
 }
 
-export default function RootLayout({ children }) {
-  return (
-  
-    <html lang="en">
-      <link rel='icon' href='/favicon.ico'/>
-      <body className={inter.className} >{children}</body>
-    </html>
 
-  )
-}
+function layout({ children }) {
+   
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  }
+  
+  export default layout
