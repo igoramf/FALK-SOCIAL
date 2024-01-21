@@ -16,7 +16,7 @@ export default[
     {
         id:3,
         name:'Sobre',
-        path:'/public/sobre',
+        path:'/private/home',
         icon:LayoutGrid
     }
 ]
