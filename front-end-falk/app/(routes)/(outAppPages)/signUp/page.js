@@ -32,7 +32,7 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         ></Input>
         <div className="w-1/2">
-          <Button onClick={handleLogin}>Cadastrar</Button>
+          <Button onClick={handleSignUp}>Cadastrar</Button>
         </div>
       </div>
     </div>
