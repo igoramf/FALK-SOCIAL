@@ -15,13 +15,13 @@ const authOptions = {
                     email: 'igor@gmail.com',
                     password: '123',
                     name: 'igorAuth',
-                    role: 'admin'
+                    role: 'user'
                 }
-                const isValidEmail = user?.email == credentials?.email
-                const isValidPassword = user?.password == credentials?.password
+                const isValidEmail = user.email === credentials.email
+                const isValidPassword = user.password === credentials.password
 
 
-                if(isValidEmail && isValidPassword) {
+                if(!isValidEmail && !isValidPassword) {
                     return null
                 }
 
@@ -30,9 +30,35 @@ const authOptions = {
             }
         
         })
-    ]
+    ],
+    callbacks: {
+        jwt: async ({ token, user }) => {
+            const customUser = user
+
+            if (user) {
+                const obj = {
+                    ...token,
+                    role: customUser.role,
+                  }
+                  
+              return obj
+            }
+      
+            return token
+          },
+         session: async ({ session, token }) => {
+            return {
+              ...session,
+              user: {
+                name: token.name,
+                email: token.email,
+                role: token.role
+              }
+            }
+          }
+    }
 }
 
-const handler = NextAuth(authOptions)
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST}

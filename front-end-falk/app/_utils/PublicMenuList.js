@@ -15,8 +15,14 @@ export default[
     },
     {
         id:3,
-        name:'Sobre',
+        name:'Comunidade',
         path:'/private/home',
         icon:LayoutGrid
-    }
+    },
+    {
+        id:4,
+        name:'Sobre',
+        path:'/public/aboutPage',
+        icon:LayoutGrid
+    },
 ]

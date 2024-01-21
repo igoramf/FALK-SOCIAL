@@ -6,9 +6,13 @@ import { LogIn } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 
 function SideNav({toggleSideBar}) {
   
+  const { data: session } = useSession();
+
   return (
     <div className=' h-full p-5 '>
         <Image src='/logo.svg' alt='logo'
@@ -31,8 +35,9 @@ function SideNav({toggleSideBar}) {
         <div className='absolute bottom-10 flex gap-3 items-center'>
      
             <h2>
-          <Button variant="ghost" className='flex gap-2 items-center cursor-pointer'><LogIn/>
-          Sign In</Button></h2>
+          <Button variant="ghost" onClick={() => signOut()} className='flex gap-2 items-center cursor-pointer'><LogIn/>
+          {session ? "Sair" : "Entrar"}
+          </Button></h2>
         </div>
     </div>
   )

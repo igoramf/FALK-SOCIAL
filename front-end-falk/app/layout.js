@@ -1,5 +1,6 @@
 import { Outfit } from 'next/font/google'
 import './globals.css'
+import { AuthProvider } from '@/providers/auth-provider'
 
 
 const inter = Outfit({ subsets: ['latin'] })
@@ -17,11 +18,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-  
-    <html lang="en">
-      <link rel='icon' href='/favicon.ico'/>
-      <body className={inter.className} >{children}</body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <link rel='icon' href='/favicon.ico'/>
+        <body className={inter.className} >{children}</body>
+      </html>
+    </AuthProvider>
 
   )
 }
