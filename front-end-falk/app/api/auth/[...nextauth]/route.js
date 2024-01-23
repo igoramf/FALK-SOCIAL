@@ -1,3 +1,4 @@
+import { login } from "@/services/loginFunctions";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -10,34 +11,26 @@ const authOptions = {
                 password: { label: 'Password', type: 'password'}
             },
             async authorize(credentials){
-                const user = {
-                    id: 1,
-                    email: 'igor@gmail.com',
-                    password: '123',
-                    name: 'igorAuth',
-                    role: 'admin'
-                }
-                const isValidEmail = user.email === credentials.email
-                const isValidPassword = user.password === credentials.password
+                const response = await login(credentials.email, credentials.password)
 
-
-                if(!isValidEmail || !isValidPassword) {
+                if(!response) {
                     return null
                 }
 
-                return user
+                return response.data.data
             }
         
         })
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
-            const customUser = user
-
             if (user) {
                 const obj = {
                     ...token,
-                    role: customUser.role,
+                    role: 'admin',
+                    userId: user.id,
+                    authToken: user.token,
+                    user: user.user
                   }
                   
               return obj
@@ -46,12 +39,16 @@ const authOptions = {
             return token
           },
          session: async ({ session, token }) => {
+
             return {
               ...session,
               user: {
                 name: token.name,
                 email: token.email,
-                role: token.role
+                role: token.role,
+                userId: token.userId,
+                user: token.user,
+                authToken: token.authToken
               }
             }
           }
