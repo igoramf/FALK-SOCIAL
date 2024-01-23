@@ -12,10 +12,14 @@ function Header({toggleSideBar}) {
          onClick={()=>toggleSideBar()}
          />
          <div className='flex w-full lg:mx-40 justify-between hidden md:flex'>
-          <Image src='/logo.svg' alt='logo'
-            width={280}
+          <div className='flex items-center'>
+          <Image src='/falk-logo.png' alt='logo'
+            width={50}
     
-            height={200}/>
+            height={50}/>
+            // PEGAR A FONTE DAQUELA LOGO ORIGINAL
+            <h1 className='text-lg'>FALK</h1>
+          </div>
           <div className='flex items-center gap-10'>
             {
               PublicMenuList.map((item,index)=>(  
