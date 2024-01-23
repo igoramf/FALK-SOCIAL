@@ -27,8 +27,8 @@ export default[
     },
     {
         id:5,
-        name:'User',
-        path:'/user',
+        name:'Sobre',
+        path:'/public/aboutPage',
         icon:User
     },
 

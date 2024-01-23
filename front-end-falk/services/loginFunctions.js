@@ -10,3 +10,13 @@ export const login = async (email , password) => {
 
     return response
 }
+
+export const logout = async ( token, userId ) => {
+    const response = await api.patch(
+        `/signOut?idUser=${userId}`,null, {
+            headers: { authorization: token },
+        }
+    )
+
+    return response
+}

@@ -8,10 +8,16 @@ import Link from 'next/link'
 import React from 'react'
 import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react'
+import { logout } from '@/services/loginFunctions'
 
 function SideNav({toggleSideBar}) {
-  
+
   const { data: session } = useSession();
+
+  const logOut = async () => {
+    signOut()
+    logout(session.user.authToken, session.user.userId)
+  }
 
   return (
     <div className=' h-full p-5 '>
@@ -35,7 +41,7 @@ function SideNav({toggleSideBar}) {
         <div className='absolute bottom-10 flex gap-3 items-center'>
      
             <h2>
-          <Button variant="ghost" onClick={() => signOut()} className='flex gap-2 items-center cursor-pointer'><LogIn/>
+          <Button variant="ghost" onClick={() => logOut()} className='flex gap-2 items-center cursor-pointer'><LogIn/>
           {session ? "Sair" : "Entrar"}
           </Button></h2>
         </div>
