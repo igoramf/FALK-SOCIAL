@@ -17,7 +17,9 @@ function SignIn() {
 
   const router = useRouter()
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault()
+
     const data = {
       email,
       password,
@@ -29,12 +31,10 @@ function SignIn() {
 
     if(response){
       router.refresh()
-      router.push("/login")
+      router.push("/public/signIn")
     }else{
       setError("Erro ao realizar cadastro");
     }
-
-
   };
 
   return (
