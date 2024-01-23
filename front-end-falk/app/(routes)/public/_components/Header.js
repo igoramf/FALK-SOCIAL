@@ -17,7 +17,7 @@ function Header({toggleSideBar}) {
             width={50}
     
             height={50}/>
-            // PEGAR A FONTE DAQUELA LOGO ORIGINAL
+            {/*PEGAR A FONTE DAQUELA LOGO ORIGINAL*/}
             <h1 className='text-lg'>FALK</h1>
           </div>
           <div className='flex items-center gap-10'>
