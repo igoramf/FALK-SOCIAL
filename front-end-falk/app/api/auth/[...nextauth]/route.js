@@ -15,18 +15,17 @@ const authOptions = {
                     email: 'igor@gmail.com',
                     password: '123',
                     name: 'igorAuth',
-                    role: 'user'
+                    role: 'admin'
                 }
                 const isValidEmail = user.email === credentials.email
                 const isValidPassword = user.password === credentials.password
 
 
-                if(!isValidEmail && !isValidPassword) {
+                if(!isValidEmail || !isValidPassword) {
                     return null
                 }
 
                 return user
-                
             }
         
         })
@@ -56,6 +55,9 @@ const authOptions = {
               }
             }
           }
+    },
+    pages: {
+        signIn: '/public/signIn'
     }
 }
 

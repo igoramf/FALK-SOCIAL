@@ -31,6 +31,9 @@ function SignIn() {
           upText="Senha"
           onChange={(e) => setPassword(e.target.value)}
         ></Input>
+          <div className='flex flex-col sm:flex-row sm:justify-end'>
+            <Link className='text-sm text-gray-500' href="signIn">Fazer login!</Link>
+          </div>
         <div className="w-1/2">
           <Button onClick={handleSignUp}>Cadastrar</Button>
         </div>
