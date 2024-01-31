@@ -4,32 +4,31 @@ export default[
     {
         id:1,
         name:'Home',
-        path:'/home',
+        path:'/private/home',
         icon:Home
     },
     {
         id:2,
-        name:'Community',
-        path:'/community',
+        name:'Comunidades',
+        path:'/private/communities',
         icon:Rocket
     },
-    {
+    /*{
         id:3,
         name:'Tools',
         path:'/tool',
         icon:LayoutGrid
-    },
+    },*/
     {
         id:4,
-        name:'Settings',
-        path:'/settings',
-        icon:Settings
+        name:'Perfil',
+        path:'/public/aboutPage',
+        icon: User
     },
     {
         id:5,
-        name:'User',
-        path:'/user',
-        icon:User
+        name:'Configurações',
+        path:'/private/settings',
+        icon:Settings
     },
-
 ]

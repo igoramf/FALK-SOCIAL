@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { LoginDropdown } from '@/components/ui/loginDropdown'
 import { Menu, MenuSquare } from 'lucide-react'
 import React from 'react'
 
@@ -9,9 +10,7 @@ function Header({toggleSideBar}) {
          text-slate-500 cursor-pointer'
          onClick={()=>toggleSideBar()}
          />
-        <Button className='bg-blue-500 
-        hover:bg-blue-600 shadow-sm'>
-            Get Started</Button>
+        <LoginDropdown />
     </div>
   )
 }

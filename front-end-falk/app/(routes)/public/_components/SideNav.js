@@ -1,24 +1,15 @@
 "use client"
-import MenuList from '@/app/_utils/MenuList'
 import { Button } from '@/components/ui/button'
+import PublicMenuList from '@/app/_utils/PublicMenuList'
 
 import { LogIn } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { useSession } from 'next-auth/react'
-import { signOut } from 'next-auth/react'
-import { logout } from '@/services/loginFunctions'
 
 function SideNav({toggleSideBar}) {
 
-  const { data: session } = useSession();
-
-  const logOut = async () => {
-    signOut()
-    logout(session.user.authToken, session.user.userId)
-  }
-
+  
   return (
     <div className=' h-full p-5 '>
         <Image src='/logo.svg' alt='logo'
@@ -27,7 +18,7 @@ function SideNav({toggleSideBar}) {
         height={200}/>
 
         <div className='flex flex-col mt-10'>
-            {MenuList.map((item,index)=>(  
+            {PublicMenuList.map((item,index)=>(  
               <Link href={item.path} onClick={()=>toggleSideBar(false)}>
                 <h2 variant="ghost" 
                 className="group p-4 flex gap-5 items-center
@@ -41,9 +32,8 @@ function SideNav({toggleSideBar}) {
         <div className='absolute bottom-10 flex gap-3 items-center'>
      
             <h2>
-          <Button variant="ghost" onClick={() => logOut()} className='flex gap-2 items-center cursor-pointer'><LogIn/>
-          {session ? "Sair" : "Entrar"}
-          </Button></h2>
+          <Button variant="ghost" className='flex gap-2 items-center cursor-pointer'><LogIn/>
+          Sign In</Button></h2>
         </div>
     </div>
   )

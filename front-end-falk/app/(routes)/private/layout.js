@@ -2,9 +2,16 @@
 import React, { useState } from 'react'
 import SideNav from '../_components/SideNav'
 import Header from '../_components/Header'
+import { useSession } from 'next-auth/react'
 
 function layout({ children }) {
   const [toggleSideBar, setToggleSideBar] = useState(true)
+  
+
+  const { data: session } = useSession();
+
+  console.log(session)
+
   
   return (
     <div>
