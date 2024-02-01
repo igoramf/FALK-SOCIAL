@@ -8,10 +8,24 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Send } from 'lucide-react';
 import { createComment } from '@/services/commentsFunctions';
+import { useToast } from '@/components/ui/use-toast';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+import CommentList from './CommentList';
 
 function PostItem( { post, updatePostList } ) {
 
     const { user: user } = useSession().data || {};
+    const { toast } = useToast();
 
     const [commentInput, setCommentInput] = useState()
 
@@ -38,7 +52,18 @@ function PostItem( { post, updatePostList } ) {
             postId: post._id
         }
         
-        await createComment(user.authToken, data)
+        const response = await createComment(user.authToken, data);
+
+        if(response.status == 201){
+            toast({
+                title: "Comentando tudo ein",
+                description: "Seu comentário foi criado com sucesso",
+                variant: "success"
+            })
+            setCommentInput("")
+        }
+        updatePostList()
+
     }
 
 
@@ -70,31 +95,56 @@ function PostItem( { post, updatePostList } ) {
                     }
                     <h2>{post?.likes.length} likes</h2>
                 </div>
-                <div className='flex flex-row gap-2 items-center'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                    </svg>
-                    <h2>{post?.comments.length} Comentários</h2>
-                </div>
+                <AlertDialog>
+                    <AlertDialogTrigger>
+                        <div className='flex flex-row gap-2 items-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                            </svg>
+                            <h2>{post?.comments.length} Comentários</h2>
+                        </div>
+                </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                        <AlertDialogTitle className="flex justify-between items-center">Comentários <AlertDialogCancel>X</AlertDialogCancel></AlertDialogTitle>
+                        <AlertDialogDescription>
+                            <CommentList comentList={post?.comments}/>
+                        </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+
             </div>
+            
+
+            
+            
+
+
+
             {/* COMMENT SECTION*/}
-            <div className='mt-5 flex gap-4 items-center'>
-                <hr className='mb-5'></hr>
-                <Image src={userImg} width={30} height={30} alt="user-image"
-                className='rounded-full '
-                />
-                <Input 
-                type="text" 
-                placeholder="Faça um comentário"
-                variant="comment"
-                onChange={(e) => setCommentInput(e.target.value)} 
-                />
-                <Button 
-                className="bg-blue-400 text-white p-2 h-8 w-10 rounded-xl hover:bg-blue-600" 
-                disabled={!commentInput}
-                onClick={addComment}
-                ><Send /></Button>
-            </div>
+            {user && (
+                <div className='mt-5 flex gap-4 items-center'>
+                    <hr className='mb-5'></hr>
+                    <Image src={userImg} width={30} height={30} alt="user-image"
+                    className='rounded-full '
+                    />
+                    <Input 
+                    type="text" 
+                    placeholder="Faça um comentário"
+                    value={commentInput}
+                    variant="comment"
+                    onChange={(e) => setCommentInput(e.target.value)} 
+                    />
+                    <Button 
+                    className="bg-blue-400 text-white p-2 h-8 w-10 rounded-xl hover:bg-blue-600" 
+                    disabled={!commentInput}
+                    onClick={addComment}
+                    ><Send /></Button>
+                </div>
+            )}
         </div>
     )
 }
