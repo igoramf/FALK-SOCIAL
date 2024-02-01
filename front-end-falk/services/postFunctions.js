@@ -24,3 +24,15 @@ export const getAllPost = async (token) => {
 
     return response
 }
+
+export const likePost = async ( token, postId, data ) => {
+    const response = await api.put(
+        `/post/like/${postId}`,
+        data,
+        {
+            headers: { authorization: token },
+        }
+    )
+
+    return response
+}

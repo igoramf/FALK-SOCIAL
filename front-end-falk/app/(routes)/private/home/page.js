@@ -30,7 +30,7 @@ function Home() {
        <WritePost getAllPost={() => getPosts()}/>  
       }
 
-      <PostList postList={postList} />
+      <PostList postList={postList} updatePostList={() => getPosts()}/>
     </div>
   )
 }

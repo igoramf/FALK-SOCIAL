@@ -8,7 +8,7 @@ import { useState }  from "react";
 import { useToast } from '@/components/ui/use-toast';
 
 
-function WritePost({getAllPost}) {
+function WritePost({ getAllPost }) {
     const { user: user } = useSession().data || {};
     const { toast }  = useToast();
 

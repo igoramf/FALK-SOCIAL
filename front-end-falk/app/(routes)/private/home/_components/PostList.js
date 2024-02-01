@@ -3,12 +3,12 @@ import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import PostItem from './PostItem';
 
-function PostList({postList}) {
+function PostList({postList, updatePostList}) {
 
     return (
-        <div>{!postList ? postList.map((item, index) => (
+        <div>{postList ? postList.map((item, index) => (
             <div key={index}>
-                <PostItem post={item} />
+                <PostItem post={item} updatePostList={updatePostList} />
             </div>
         )):
             <div>
