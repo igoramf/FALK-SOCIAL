@@ -24,13 +24,18 @@ const authOptions = {
     ],
     callbacks: {
         jwt: async ({ token, user }) => {
+
+            console.log(user)
             if (user) {
                 const obj = {
                     ...token,
                     role: 'admin',
                     userId: user.id,
                     authToken: user.token,
-                    user: user.user
+                    email: user.email,
+                    name: user.name,
+                    phone: user.phone,
+                    username: user.user
                   }
                   
               return obj
@@ -47,8 +52,9 @@ const authOptions = {
                 email: token.email,
                 role: token.role,
                 userId: token.userId,
-                user: token.user,
-                authToken: token.authToken
+                user: token.username,
+                authToken: token.authToken,
+                phone: token.phone
               }
             }
           }

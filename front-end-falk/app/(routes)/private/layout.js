@@ -6,11 +6,6 @@ import { useSession } from 'next-auth/react'
 
 function layout({ children }) {
   const [toggleSideBar, setToggleSideBar] = useState(true)
-  
-
-  const { data: session } = useSession();
-
-  console.log(session)
 
   
   return (

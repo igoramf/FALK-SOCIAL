@@ -20,7 +20,7 @@ function SideNav({toggleSideBar}) {
   }
 
   return (
-    <div className=' h-full p-5 '>
+    <div className=' h-full p-5 border'>
         <Image src='/logo.svg' alt='logo'
         width={280}
  

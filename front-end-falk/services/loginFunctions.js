@@ -1,4 +1,4 @@
-import api from "@/app/api/api"
+import api from "@/app/_utils/api"
 
 export const login = async (email , password) => {
     
