@@ -15,7 +15,7 @@ export const createPost = async (token, data) => {
 
 export const getAllPost = async (token) => {
     const response = await api.get(
-        "/post/",
+        "/post",
         null,
         {
             headers: { authorization: token },

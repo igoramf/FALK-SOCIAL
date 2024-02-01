@@ -18,7 +18,7 @@ const LoginDropdown = () => {
         <div>
             {session ?
                 <div onClick={handleIsActive} className="flex items-center justify-center bg-blue-600 h-12 w-12 rounded-lg hover:cursor-pointer">
-                    <Image  width={30} height={20} src={semFoto.src}></Image>
+                    <Image  width={30} height={20} src={semFoto.src}alt="perfilImg"></Image>
                 </div>
                 :
                 <Button className="mt-3 bg-blue-500">Get Started</Button>

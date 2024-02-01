@@ -8,7 +8,7 @@ import { useState }  from "react";
 import { useToast } from '@/components/ui/use-toast';
 
 
-function WritePost() {
+function WritePost({getAllPost}) {
     const { user: user } = useSession().data || {};
     const { toast }  = useToast();
 
@@ -25,6 +25,7 @@ function WritePost() {
         
         if(response.status == 201){
             setText("");
+            getAllPost();
             toast({
                 title: "Boaaa!",
                 description: "Post Salvo com sucesso",
