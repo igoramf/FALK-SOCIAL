@@ -56,7 +56,7 @@ function PostItem( { post, updatePostList } ) {
 
         if(response.status == 201){
             toast({
-                title: "Comentando tudo ein",
+                title: "Comentando tudo ein!!",
                 description: "Seu comentário foi criado com sucesso",
                 variant: "success"
             })
@@ -108,7 +108,7 @@ function PostItem( { post, updatePostList } ) {
                         <AlertDialogHeader>
                         <AlertDialogTitle className="flex justify-between items-center">Comentários <AlertDialogCancel>X</AlertDialogCancel></AlertDialogTitle>
                         <AlertDialogDescription>
-                            <CommentList comentList={post?.comments}/>
+                            <CommentList comentList={post?.comments} updatePostList={updatePostList}/>
                         </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>

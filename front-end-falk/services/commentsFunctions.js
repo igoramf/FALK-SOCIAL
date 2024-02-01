@@ -12,3 +12,16 @@ export const createComment = async (token, data) => {
 
     return response;
 }
+
+
+export const deleteComment = async (token, commentId) => {
+    
+    const response = await api.delete(
+        `/comment/${commentId}`,
+        {
+            headers: { authorization: token },
+        }
+    )
+
+    return response;
+}
