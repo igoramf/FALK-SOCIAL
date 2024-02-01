@@ -32,7 +32,7 @@ function layout({ children }) {
             {children}
           </div>
           {/* Right Most Section of page */}
-          <div className='p-5'>Side Section</div>
+          <div className='p-5 hidden md:block'>Anúncios</div>
         </div>
 
       </div>
