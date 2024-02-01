@@ -17,6 +17,7 @@ const inputVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        comment: "w-full bg-slate-100 p-2 rounded-full px-5 outline-blue-300"
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -34,7 +35,7 @@ const inputVariants = cva(
 
 const Input = React.forwardRef(({ className, variant, size, upText, alertMsg, ...props }, ref) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
         <label htmlFor={upText} className="sm:text-sm md:text-base lg:text-md xl:text-lg sm:my-1">{upText}</label> 
         <input
             name={upText}
