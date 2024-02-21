@@ -10,7 +10,6 @@ function CommunityList( { communityList } ) {
    const [filterText, setFilterText] = useState("")
 
    const filterComm = (comm) => {
-    console.log(comm)
     const searchText = filterText.toLowerCase();
     return (
         comm.communityName.toLowerCase().startsWith(searchText)

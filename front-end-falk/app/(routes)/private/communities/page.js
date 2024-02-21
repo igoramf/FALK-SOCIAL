@@ -20,7 +20,7 @@ function page() {
     
     return (
         <div className='p-5 px-10'>
-            <Banner />
+            <Banner updateCommList={fecthCommunities}/>
             <CommunityList communityList={communities}/>
         </div>
     )

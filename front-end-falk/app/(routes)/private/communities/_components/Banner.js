@@ -15,7 +15,7 @@ import { createCommunity } from '@/services/communityFunctions'
 import { DialogClose } from '@radix-ui/react-dialog'
 import { useToast } from '@/components/ui/use-toast'
 
-function Banner() {
+function Banner( { updateCommList } ) {
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
@@ -33,6 +33,7 @@ function Banner() {
 
     const response = await createCommunity(user.authToken, data)
 
+    updateCommList()
     if(response.status == 201){
       toast({
           title: "Boaaa!",
@@ -47,6 +48,7 @@ function Banner() {
             variant: "destructive" 
         })
     }
+
   }
 
   return (
