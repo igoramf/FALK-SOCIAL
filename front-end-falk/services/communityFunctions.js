@@ -25,7 +25,7 @@ export const getAllCommunity = async(token) => {
 
 export const getOneCommunity = async(token, id) => {
     try {
-        const response = api.get(`/community/${id}`, null, {
+        const response = api.get(`/community/${id}`,  {
             headers: { authorization: token },
         })
         return response
