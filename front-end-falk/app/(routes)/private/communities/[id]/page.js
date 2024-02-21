@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import CommunityDetails from './_components/CommunityDetails';
 import PostList from '../../_components/PostList';
 import { getAllPost } from '@/services/postFunctions';
+import WritePost from '../../_components/WritePost';
 
 function page( { params } ) {
 
@@ -18,16 +19,14 @@ function page( { params } ) {
   }
 
   useEffect(() => {
-    fetchComm()
-  },[])
+    if(user){
+      fetchComm()
+      getPosts();
+    }
+  },[user])
 
   const [postList, setPostList] = useState([])
-  
-  useEffect(() => {
-      if(user){
-          getPosts();
-      }
-  },[user])
+
 
   const getPosts = async () => {
       const posts = await getAllPost(user.authToken);
@@ -39,8 +38,8 @@ function page( { params } ) {
     <div>
       <CommunityDetails content={comm}></CommunityDetails>
       <div className='p-3'>
-        <PostList postList={postList}></PostList>
-
+        {user && <WritePost></WritePost>}
+        <PostList postList={postList} ></PostList>
       </div>
     </div>
   )
