@@ -10,3 +10,15 @@ export const createCommunity = async (token, data) => {
         return null
     }
 }
+
+export const getAllCommunity = async(token, date) => {
+    const response = await api.get(
+        "/community",
+        null,
+        {
+            headers: { authorization: token },
+        }
+    )
+
+    return response
+}

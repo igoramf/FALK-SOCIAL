@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { useSession } from 'next-auth/react'
 import { createCommunity } from '@/services/communityFunctions'
 import { DialogClose } from '@radix-ui/react-dialog'
+import { useToast } from '@/components/ui/use-toast'
 
 function Banner() {
 
@@ -21,6 +22,8 @@ function Banner() {
 
   const { user: user } = useSession().data || {};
 
+  const { toast }  = useToast();
+
   const handleCreate = async () => {
     const data = {
       communityName: name,
@@ -28,7 +31,22 @@ function Banner() {
       createdBy: user.userId
     }
 
-    await createCommunity(user.authToken, data)
+    const response = await createCommunity(user.authToken, data)
+
+    if(response.status == 201){
+      toast({
+          title: "Boaaa!",
+          description: "Comunidade criada com sucesso",
+          variant: "success",
+
+      })
+    }else{
+        toast({
+            title: "Erro :/",
+            description: "Erro ao criar comunidade",
+            variant: "destructive" 
+        })
+    }
   }
 
   return (
