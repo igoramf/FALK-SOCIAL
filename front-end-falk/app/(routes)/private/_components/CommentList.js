@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import userImg from '../../../../../public/sem-foto.jpg'
+import userImg from '../../../../public/sem-foto.jpg'
 import { MoreVertical, Trash } from 'lucide-react'
 import { useSession } from 'next-auth/react';
 import {

@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Banner from './_components/Banner'
+import Banner from '../_components/Banner'
 import { useSession } from 'next-auth/react'
-import WritePost from './_components/WritePost'
-import PostList from './_components/PostList'
 import { getAllPost } from '@/services/postFunctions'
+import PostList from "../_components/PostList"
+import WritePost from "../_components/WritePost"
 
 function Home() {
 

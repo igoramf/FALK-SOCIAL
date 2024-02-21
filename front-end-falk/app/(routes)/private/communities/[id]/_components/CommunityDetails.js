@@ -3,12 +3,10 @@ import sem_foto from "../../../../../../public/sem-foto.jpg"
 import Image from 'next/image'
 import { CalendarDays } from 'lucide-react'
 import { Button } from '@/components/ui/button';
-import ContentType from './ContentType';
-
-
 
 function CommunityDetails( {content} ) {
 
+    const [selecionado, setSelecionado] = useState('posts');
 
     const dateToText = (date) => {
         const data = new Date(date);
@@ -44,7 +42,14 @@ function CommunityDetails( {content} ) {
             </div>
         </div>
         <div className=" flex flex-row items-end flex-1">
-            <ContentType ></ContentType>
+            <div className='w-full flex items-center justify-between gap-2'>
+                <div className={`h-10 w-full border-b-2 font-semibold ${selecionado === 'posts' ? 'border-black' : ''} flex justify-center hover:cursor-pointer`} onClick={() => setSelecionado('posts')}>
+                    Posts
+                </div>
+                <div className={`h-10 w-full border-b-2 font-semibold ${selecionado === 'users' ? 'border-black' : ''} flex justify-center hover:cursor-pointer`} onClick={() => setSelecionado('users')}>
+                    Users
+                </div>
+            </div>
         </div>
     </div>
   )

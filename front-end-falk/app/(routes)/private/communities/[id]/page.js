@@ -3,6 +3,8 @@ import { getOneCommunity } from '@/services/communityFunctions';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import CommunityDetails from './_components/CommunityDetails';
+import PostList from '../../_components/PostList';
+import { getAllPost } from '@/services/postFunctions';
 
 function page( { params } ) {
 
@@ -19,11 +21,27 @@ function page( { params } ) {
     fetchComm()
   },[])
 
+  const [postList, setPostList] = useState([])
+  
+  useEffect(() => {
+      if(user){
+          getPosts();
+      }
+  },[user])
+
+  const getPosts = async () => {
+      const posts = await getAllPost(user.authToken);
+      setPostList(posts.data.data)
+  }
+
 
   return (
     <div>
       <CommunityDetails content={comm}></CommunityDetails>
+      <div className='p-3'>
+        <PostList postList={postList}></PostList>
 
+      </div>
     </div>
   )
 }
