@@ -1,5 +1,5 @@
 "use client"
-import { getOneCommunity } from '@/services/communityFunctions';
+import { getOneCommunity, getPostsByCommunity } from '@/services/communityFunctions';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import CommunityDetails from './_components/CommunityDetails';
@@ -19,27 +19,32 @@ function page( { params } ) {
   }
 
   useEffect(() => {
-    if(user){
-      fetchComm()
+    if (user) {
+      fetchComm();
+    }
+  }, [user]);
+  
+  
+  const [postList, setPostList] = useState([])
+  
+  
+  const getPosts = async () => {
+    const posts = await getPostsByCommunity(user.authToken, comm._id)
+    setPostList(posts.data.data)
+  }
+  
+  useEffect(() => {
+    if (user && comm) {
       getPosts();
     }
-  },[user])
-
-  const [postList, setPostList] = useState([])
-
-
-  const getPosts = async () => {
-      const posts = await getAllPost(user.authToken);
-      setPostList(posts.data.data)
-  }
-
+  },[user, comm]);
 
   return (
     <div>
       <CommunityDetails content={comm}></CommunityDetails>
-      <div className='p-3'>
-        {user && <WritePost></WritePost>}
-        <PostList postList={postList} ></PostList>
+      <div className='p-5'>
+        {user && <WritePost getAllPost={getPosts} community={comm}></WritePost>}
+        <PostList postList={postList} updatePostList={getPosts}></PostList>
       </div>
     </div>
   )

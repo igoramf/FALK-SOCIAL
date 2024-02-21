@@ -33,3 +33,14 @@ export const getOneCommunity = async(token, id) => {
         return null
     }
 }
+
+export const getPostsByCommunity = async(token, id) => {
+    try {
+        const response = api.get(`/post/community/${id}`,  {
+            headers: { authorization: token },
+        })
+        return response
+    } catch (error) {
+        return null
+    }
+}
