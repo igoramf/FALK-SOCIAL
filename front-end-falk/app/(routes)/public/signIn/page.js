@@ -22,8 +22,7 @@ function SignIn() {
 
   const router = useRouter();
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
+  const handleLogin = async () => {
 
     try {
       const response = await signIn('credentials', {
@@ -46,7 +45,7 @@ function SignIn() {
   }
   return (
     <div className='parent flex items-center justify-center h-full w-full '>
-      <form onSubmit={handleSubmit((data) => console.log(data) )}  className='flex justify-center w-full'>
+      <form onSubmit={handleSubmit((e) => handleLogin(e) )}  className='flex justify-center w-full'>
         <div className='child font-bold text-[29px]  w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex  flex-col gap-4 border-2 border-purple-700 p-4 rounded'>
           <div className='flex justify-center text-lg sm:text-base md:text-lg lg:text-xl xl:text-2xl'>Faça o login</div>
           <Input upText="Email" onChange={(e) => setEmail(e.target.value)} {...register("email")} helperText={errors.email?.message}></Input>
