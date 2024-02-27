@@ -14,6 +14,9 @@ import { useSession } from 'next-auth/react'
 import { createCommunity } from '@/services/communityFunctions'
 import { DialogClose } from '@radix-ui/react-dialog'
 import { useToast } from '@/components/ui/use-toast'
+import { useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod"
+import { createCommunitySchema } from '@/app/_utils/zodSchemas'
 
 function Banner( { updateCommList } ) {
 
@@ -24,7 +27,12 @@ function Banner( { updateCommList } ) {
 
   const { toast }  = useToast();
 
-  const handleCreate = async () => {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    mode: "onBlur",
+    resolver: zodResolver(createCommunitySchema)
+  })
+
+  const handleCreate = async (e) => {
     const data = {
       communityName: name,
       description: description,
@@ -48,8 +56,9 @@ function Banner( { updateCommList } ) {
             variant: "destructive" 
         })
     }
-
   }
+
+  console.log(errors)
 
   return (
     <div className='p-2 bg-white-400 
@@ -68,25 +77,27 @@ function Banner( { updateCommList } ) {
             <DialogHeader>
               <DialogTitle>Crie sua comunidade</DialogTitle>
               <DialogDescription>
+                <form onSubmit={handleSubmit((e) => handleCreate(e) )}>
                 <div className='flex flex-col justify-end'>
                   <div className='flex items-center justify-start gap-2 text-black font-bold'>
                     <h2 className='text-[18px]'>Nome</h2>
                     <div>
-                      <Input variant="comments" onChange={(e) => setName(e.target.value)} className="h-1/2 border ml-[34px]" />
+                      <Input variant="comments" className="h-1/2 border ml-[34px]" {...register("name")} helperText={errors.name?.message}/>
                       </div>
                   </div>
                   <div className='flex gap-2 items-center justify-start text-black font-bold'>
                     <h2 className='text-[18px]'>Descricão</h2>
                     <div>
-                      <Input variant="comments" className="h-1/2 border" onChange={(e) => setDescription(e.target.value)}/>
+                      <Input variant="comments" className="h-1/2 border" {...register("description")} helperText={errors.description?.message}/>
                     </div>
                   </div>
                   <div className='flex justify-center'>
                     <DialogClose asChild>
-                      <Button className="w-1/3 flex justify-center" onClick={handleCreate}>Criar comunidade</Button> 
+                      <Button className="w-1/3 flex justify-center" onClick={handleCreate} disabled={Object.keys(errors).length !== 0}>Criar comunidade</Button> 
                     </DialogClose>
                   </div>
                 </div>
+                </form>
               </DialogDescription>
             </DialogHeader>
           </DialogContent>

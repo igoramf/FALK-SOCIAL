@@ -21,3 +21,12 @@ export const signUpSchema = z.object({
     telefone: z.string().min(9, {message: "Esse campo deve conter ao menos 9 caracteres."}),
     password: z.string().min(4, { message: "Esse campo deve ser preenchido." })
 })
+
+export const createCommunitySchema = z.object({
+    name: z
+    .string()
+    .min(4, {message: "Esse campo deve conter ao menos 4 caracteres."}),
+    description: z
+    .string()
+    .min(10, {message: "Esse campo deve conter ao menos 10 caracteres."}),
+})
