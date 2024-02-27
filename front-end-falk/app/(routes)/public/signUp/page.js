@@ -10,11 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpSchema } from "@/app/_utils/zodSchemas";
 
 function SignIn() {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [name, setName] = useState(null);
-  const [telefone, setTelefone] = useState(null);
 
   const [error, setError] = useState(null)
 
@@ -27,7 +22,6 @@ function SignIn() {
 
   const handleSignUp = async (e) => {
 
-    console.log(e)
 
     const data = {
       email: e.email,
