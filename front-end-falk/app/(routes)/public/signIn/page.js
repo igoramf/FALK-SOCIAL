@@ -6,28 +6,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { loginSchema } from "../../../_utils/zodSchemas"
 
 function SignIn() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  const schema = z.object({
-    email: z
-    .string()
-    .min(1, { message: "Esse campo deve ser preenchido." })
-    .email("Não é um email válido"),
-    password: z.string().min(4, { message: "Esse campo deve ser preenchido." })
-  })
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: "onBlur",
-    resolver: zodResolver(schema)
+    resolver: zodResolver(loginSchema)
   })
-
-  console.log(errors)
 
   const router = useRouter();
 
