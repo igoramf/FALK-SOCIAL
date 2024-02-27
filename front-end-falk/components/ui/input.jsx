@@ -33,7 +33,7 @@ const inputVariants = cva(
   }
 );
 
-const Input = React.forwardRef(({ className, variant, size, upText, alertMsg, ...props }, ref) => {
+const Input = React.forwardRef(({ className, variant, size, upText, helperText, ...props }, ref) => {
   return (
     <div className="flex flex-col w-full">
         <label htmlFor={upText} className="sm:text-sm md:text-base lg:text-md xl:text-lg sm:my-1">{upText}</label> 
@@ -43,7 +43,7 @@ const Input = React.forwardRef(({ className, variant, size, upText, alertMsg, ..
             ref={ref}
             {...props}
         />
-        <p className="my-1.5 text-xs text-red-500">{alertMsg}</p>
+        <p className="my-1.5 text-xs text-red-500">{helperText}</p>
     </div>
   );
 });
