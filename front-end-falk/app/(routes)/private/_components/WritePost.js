@@ -8,7 +8,7 @@ import { useState }  from "react";
 import { useToast } from '@/components/ui/use-toast';
 
 
-function WritePost({ getAllPost }) {
+function WritePost({ getAllPost, community }) {
     const { user: user } = useSession().data || {};
     const { toast }  = useToast();
 
@@ -19,6 +19,10 @@ function WritePost({ getAllPost }) {
         let data = {
             text: text,
             createdBy: user.userId
+        }
+
+        if(community) {
+            data["community"] = community._id
         }
 
         let response = await createPost(user.authToken, data);

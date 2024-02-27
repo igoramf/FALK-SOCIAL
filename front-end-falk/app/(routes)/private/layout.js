@@ -5,7 +5,7 @@ import Header from '../_components/Header'
 import { useSession } from 'next-auth/react'
 
 function layout({ children }) {
-  const [toggleSideBar, setToggleSideBar] = useState(true)
+  const [toggleSideBar, setToggleSideBar] = useState(false)
 
   
   return (
