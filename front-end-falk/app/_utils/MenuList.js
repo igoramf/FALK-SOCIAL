@@ -1,4 +1,6 @@
 import { Home, LayoutGrid, Rocket, Settings, User } from "lucide-react";
+import { useSession } from "next-auth/react";
+
 
 export default[
     {
@@ -22,7 +24,7 @@ export default[
     {
         id:4,
         name:'Perfil',
-        path:'/public/aboutPage',
+        path:'/private/profile/',
         icon: User
     },
     {
