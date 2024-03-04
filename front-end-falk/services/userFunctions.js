@@ -9,3 +9,11 @@ export const getUser = async (id) => {
 
     return response
 }
+
+export const getUserPosts = async (id) => {
+    const response = await api.get(
+        `/post/user/${id}`
+    )
+
+    return response
+}

@@ -8,6 +8,8 @@ function ProfileDetails( {content} ) {
 
     const [selecionado, setSelecionado] = useState('posts');
 
+    const data = content.data
+
     const dateToText = (date) => {
         const data = new Date(date);
     
@@ -21,7 +23,7 @@ function ProfileDetails( {content} ) {
     
         return `${month} ${year}`;
     };
-    
+
 
   return (
     <div className='flex flex-col bg-slate-200 h-96'>
@@ -32,12 +34,12 @@ function ProfileDetails( {content} ) {
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
                     <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><Image src={sem_foto}></Image></div>
-                    <div><Button className="bg-blue-500">Participar</Button></div>
+                    <div><Button className="bg-blue-500">Seguir</Button></div>
                 </div>
                 <div>
-                    <div className='font-bold'>{content?.communityName}</div>
-                    <div className='text-[14px] text-gray-600'>{content?.description}</div>
-                    <div className='flex flex-row items-center gap-2 text-[14px] text-gray-600 '><CalendarDays width={18} height={18}></CalendarDays>Criada em {dateToText(content?.createdAt)}</div>
+                    <div className='font-bold'>{data?.name}</div>
+                    <div className='text-[14px] text-gray-600'>{data?.username}</div>
+                    <div className='flex flex-row items-center gap-2 text-[14px] text-gray-600 '><CalendarDays width={18} height={18}></CalendarDays>Criada em {dateToText(data?.createdAt)}</div>
                 </div>
             </div>
         </div>
