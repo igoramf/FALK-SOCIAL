@@ -17,11 +17,12 @@ function page( { params } ) {
 
   useEffect(() => {
     fecthUser()
+    getPosts()
   },[params])
 
   const getPosts = async () => {
     const userPosts = await getUserPosts(params.id)
-    setPostList(userPosts)
+    setPostList(userPosts.data.data)
   }
   
 
