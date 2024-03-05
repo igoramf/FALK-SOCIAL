@@ -25,7 +25,6 @@ const authOptions = {
     callbacks: {
         jwt: async ({ token, user }) => {
 
-            console.log(user)
             if (user) {
                 const obj = {
                     ...token,

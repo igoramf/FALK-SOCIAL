@@ -25,6 +25,7 @@ function WritePost({ getAllPost, community }) {
             data["community"] = community._id
         }
 
+
         let response = await createPost(user.authToken, data);
         
         if(response.status == 201){
@@ -47,7 +48,7 @@ function WritePost({ getAllPost, community }) {
 
     return (
         <div>
-            <h2 className='text-[30px] font-medium  text-gray-600'>Olá, {user.name}</h2>
+            <h2 className='text-[30px] font-medium  text-gray-600'>Olá, {user?.name}</h2>
             <h2 className='text-gray-400'>Compartilhe o que há de novo com você;</h2>
             <div className='p-3 border rounded-lg mt-5 bg-slate-100'>
                 <h2>Faça um post</h2>
