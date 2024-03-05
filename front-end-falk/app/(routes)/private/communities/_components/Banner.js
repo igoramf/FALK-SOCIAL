@@ -58,8 +58,6 @@ function Banner( { updateCommList } ) {
     }
   }
 
-  console.log(errors)
-
   return (
     <div className='p-2 bg-white-400 
     rounded-xl shadow-sm flex items-center

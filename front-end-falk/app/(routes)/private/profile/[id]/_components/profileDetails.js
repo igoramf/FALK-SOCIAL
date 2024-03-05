@@ -1,28 +1,20 @@
 import React, { useState } from 'react'
 import sem_foto from "../../../../../../public/sem-foto.jpg"
 import Image from 'next/image'
-import { CalendarDays } from 'lucide-react'
+import { CalendarDays, Pencil } from 'lucide-react'
 import { Button } from '@/components/ui/button';
+import dateToText from "../../../../../../app/_utils/dateToText"
+import { useSession } from 'next-auth/react';
+import EditProfile from './editProfile';
 
 function ProfileDetails( {content} ) {
+    const { user: user } = useSession().data || {};
 
     const [selecionado, setSelecionado] = useState('posts');
 
+
     const data = content.data
 
-    const dateToText = (date) => {
-        const data = new Date(date);
-    
-        const meses = [
-            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-        ];
-    
-        const year = data.getUTCFullYear();
-        const month = meses[data.getUTCMonth()];
-    
-        return `${month} ${year}`;
-    };
 
 
   return (
@@ -34,7 +26,11 @@ function ProfileDetails( {content} ) {
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
                     <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><Image src={sem_foto}></Image></div>
-                    <div><Button className="bg-blue-500">Seguir</Button></div>
+                    <div>{
+                        data?._id != user?.userId ? 
+                        <Button className="bg-blue-500">Seguir</Button>
+                        : <EditProfile trigger={<Pencil/>}></EditProfile>
+                    }</div>
                 </div>
                 <div>
                     <div className='font-bold'>{data?.name}</div>
