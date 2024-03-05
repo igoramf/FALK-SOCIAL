@@ -3,6 +3,8 @@ import { Outfit } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/providers/auth-provider'
 import { Toaster } from "@/components/ui/toaster"
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from '@/lib/react-query'
 
 
 const inter = Outfit({ subsets: ['latin'] })
@@ -20,13 +22,15 @@ const inter = Outfit({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body className={inter.className} >{children}
-        <Toaster></Toaster>
-        </body>
-      </html>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <html lang="en">
+          <body className={inter.className} >{children}
+          <Toaster></Toaster>
+          </body>
+        </html>
+      </AuthProvider>
+    </QueryClientProvider>
 
   )
 }
