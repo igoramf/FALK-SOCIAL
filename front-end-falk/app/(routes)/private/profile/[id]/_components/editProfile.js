@@ -16,15 +16,14 @@ import { uploadProfilePic } from "@/services/userFunctions";
 
 
 
-function EditProfile({ trigger, userId }) {
+function EditProfile({ trigger, userId, profileImg }) {
   
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState(profileImg ?? null)
 
   const handleImage = async (file) => {
     if(file){
       const url = URL.createObjectURL(file)
       setImage(url)
-      console.log(file)
       await uploadProfilePic(file, userId)
     }
 

@@ -14,20 +14,21 @@ function ProfileDetails( {content} ) {
 
 
     const data = content.data
+    const profileImg = data?.profile_pic ? data.profile_pic : sem_foto.src
 
   return (
     <div className='flex flex-col bg-slate-200 h-96'>
         <div className='flex bg-slate-400 h-36 border-b-4'>
-            Capa
+
         </div>
         <div className='flex flex-col justify-end p-3'>
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
-                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><Image src={sem_foto}></Image></div>
+                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><img src={profileImg}></img></div>
                     <div>{
                         data?._id != user?.userId ? 
                         <Button className="bg-blue-500">Seguir</Button>
-                        : <EditProfile trigger={<Pencil/>} userId={data?._id}></EditProfile>
+                        : <EditProfile trigger={<Pencil/>} userId={data?._id} profileImg={profileImg}></EditProfile>
                     }</div>
                 </div>
                 <div>
