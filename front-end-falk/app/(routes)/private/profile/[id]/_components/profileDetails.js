@@ -15,8 +15,6 @@ function ProfileDetails( {content} ) {
 
     const data = content.data
 
-
-
   return (
     <div className='flex flex-col bg-slate-200 h-96'>
         <div className='flex bg-slate-400 h-36 border-b-4'>
@@ -29,7 +27,7 @@ function ProfileDetails( {content} ) {
                     <div>{
                         data?._id != user?.userId ? 
                         <Button className="bg-blue-500">Seguir</Button>
-                        : <EditProfile trigger={<Pencil/>}></EditProfile>
+                        : <EditProfile trigger={<Pencil/>} userId={data?._id}></EditProfile>
                     }</div>
                 </div>
                 <div>

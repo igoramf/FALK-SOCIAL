@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Dialog,
     DialogContent,
@@ -10,15 +10,27 @@ import {
 import { Button } from "@/components/ui/button";
 import { DialogClose } from '@radix-ui/react-dialog'
 import { Input } from "@/components/ui/input";
+import { Camera } from "lucide-react";
+import { uploadProfilePic } from "@/services/userFunctions";
 
 
 
 
-function EditProfile({ trigger }) {
+function EditProfile({ trigger, userId }) {
+  
+  const [image, setImage] = useState(null)
 
+  const handleImage = async (file) => {
+    if(file){
+      const url = URL.createObjectURL(file)
+      setImage(url)
+      console.log(file)
+      await uploadProfilePic(file, userId)
+    }
 
+  }
 
-    const handleSubmit = () => ""
+  const handleSubmit = () => ""
 
   return (
     <div>
@@ -32,36 +44,20 @@ function EditProfile({ trigger }) {
             <DialogDescription>
               <form onSubmit={handleSubmit}>
                 <div className="flex flex-col justify-end">
-                  <div className="flex items-center justify-start gap-2 text-black font-bold">
-                    <h2 className="text-[18px]">Nome</h2>
-                    <div>
-                      <Input
-                        variant="comments"
-                        className="h-1/2 border ml-[34px]"
-                        //{...register("name")}
-                        //helperText={errors.name?.message}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex gap-2 items-center justify-start text-black font-bold">
-                    <h2 className="text-[18px]">Descricão</h2>
-                    <div>
-                      <Input
-                        variant="comments"
-                        className="h-1/2 border"
-                        //{...register("description")}
-                        //helperText={errors.description?.message}
-                      />
-                    </div>
+                  <div className="h-24 bg-slate-400 rounded-full w-24 flex justify-center items-center">
+                    <label className="block absolute top-20 left-15" htmlFor="picture_input">
+                        <Camera className="hover:cursor-pointer z-30"></Camera>
+                        <input type="file" accept="image/*" id="picture_input" className="hidden" multiple={false} onChange={(e) => handleImage(e.target.files[0])}/>
+                    </label>
+                    {image ? <img src={image} alt="Foto de perfil" className="h-auto w-full rounded-full" /> : null}    
                   </div>
                   <div className="flex justify-center">
                     <DialogClose asChild>
                       <Button
                         className="w-1/3 flex justify-center"
-                        //onClick={handleCreate}
-                        //disabled={Object.keys(errors).length !== 0}
+                        disabled={!Boolean(image)}
                       >
-                        Criar comunidade
+                        Salvar
                       </Button>
                     </DialogClose>
                   </div>
