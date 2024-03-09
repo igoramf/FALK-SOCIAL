@@ -40,3 +40,26 @@ export const getPostsByCommunity = async(username) => {
         return null
     }
 }
+
+export const uploadCommunityPic = async (file, communityId) => {
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('communityId', communityId);
+
+        const response = await api.post(
+            '/community/upload-profile-pic',
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        );
+
+        return response;
+    } catch (error) {
+        console.error('Error uploading profile picture:', error);
+        return null
+    }
+}

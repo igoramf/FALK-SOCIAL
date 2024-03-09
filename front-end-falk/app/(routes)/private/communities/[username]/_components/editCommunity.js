@@ -12,19 +12,20 @@ import { DialogClose } from '@radix-ui/react-dialog'
 import { Input } from "@/components/ui/input";
 import { Camera } from "lucide-react";
 import { uploadProfilePic } from "@/services/userFunctions";
+import { uploadCommunityPic } from "@/services/communityFunctions";
 
 
 
 
-function EditCommunity({ trigger, userId, profileImg }) {
+function EditCommunity({ trigger, communityId, profileComm }) {
   
-  const [image, setImage] = useState(profileImg ?? null)
+  const [image, setImage] = useState(profileComm ?? null)
 
   const handleImage = async (file) => {
     if(file){
       const url = URL.createObjectURL(file)
       setImage(url)
-      await uploadProfilePic(file, userId)
+      await uploadCommunityPic(file, communityId)
     }
 
   }
@@ -32,6 +33,7 @@ function EditCommunity({ trigger, userId, profileImg }) {
 
   // TO-DO edit more info
   const handleSubmit = () => ""
+
 
   return (
     <div>
@@ -41,7 +43,7 @@ function EditCommunity({ trigger, userId, profileImg }) {
         </DialogTrigger>
         <DialogContent className="bg-slate-100">
           <DialogHeader>
-            <DialogTitle>Edite o seu perfil</DialogTitle>
+            <DialogTitle>Edite a sua comunidade</DialogTitle>
             <DialogDescription>
               <form onSubmit={handleSubmit}>
                 <div className="flex flex-col justify-end">
@@ -50,7 +52,7 @@ function EditCommunity({ trigger, userId, profileImg }) {
                         <Camera className="hover:cursor-pointer z-30"></Camera>
                         <input type="file" accept="image/*" id="picture_input" className="hidden" multiple={false} onChange={(e) => handleImage(e.target.files[0])}/>
                     </label>
-                    {image ? <img src={image} alt="Foto de perfil" className="h-auto w-full rounded-full" /> : null}    
+                    {image ? <img src={image} alt="Foto de perfil" className="h-auto w-full rounded-full"  style={{ maxWidth: '100%', maxHeight: '100%' }} /> : null}    
                   </div>
                   <div className="flex justify-center">
                     <DialogClose asChild>

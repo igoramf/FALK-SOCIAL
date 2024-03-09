@@ -26,6 +26,7 @@ function CommunityDetails( {content} ) {
         return `${month} ${year}`;
     };
     
+    const profileImg = content?.profile_pic ? content.profile_pic : sem_foto.src
 
   return (
     <div className='flex flex-col bg-slate-200 h-96'>
@@ -35,11 +36,11 @@ function CommunityDetails( {content} ) {
         <div className='flex flex-col justify-end p-3'>
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
-                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><Image src={sem_foto}></Image></div>
+                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><img src={profileImg} alt="Foto de perfil" className="h-auto w-full"  style={{ maxWidth: '100%', maxHeight: '100%' }}></img></div>
                     <div>{
                         content?.createdBy != user?.userId ? 
                         <Button className="bg-blue-500">Seguir</Button>
-                        : <EditCommunity trigger={<Pencil/>} userId={content?._id} profileImg={""}></EditCommunity>
+                        : <EditCommunity trigger={<Pencil/>} communityId={content?._id} profileComm={profileImg}></EditCommunity>
                     }</div>
                 </div>
                 <div>

@@ -24,7 +24,7 @@ function ProfileDetails( {content} ) {
         <div className='flex flex-col justify-end p-3'>
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
-                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><img src={profileImg}></img></div>
+                    <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><img src={profileImg} className="h-auto w-full"  style={{ maxWidth: '100%', maxHeight: '100%' }}></img></div>
                     <div>{
                         data?._id != user?.userId ? 
                         <Button className="bg-blue-500">Seguir</Button>

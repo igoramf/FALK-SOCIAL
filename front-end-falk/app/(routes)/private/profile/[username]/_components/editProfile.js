@@ -50,7 +50,7 @@ function EditProfile({ trigger, userId, profileImg }) {
                         <Camera className="hover:cursor-pointer z-30"></Camera>
                         <input type="file" accept="image/*" id="picture_input" className="hidden" multiple={false} onChange={(e) => handleImage(e.target.files[0])}/>
                     </label>
-                    {image ? <img src={image} alt="Foto de perfil" className="h-auto w-full rounded-full" /> : null}    
+                    {image ? <img src={image} alt="Foto de perfil" className="h-auto w-full rounded-full" style={{ maxWidth: '100%', maxHeight: '100%' }}/> : null}    
                   </div>
                   <div className="flex justify-center">
                     <DialogClose asChild>
