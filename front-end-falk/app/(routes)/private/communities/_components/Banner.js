@@ -20,9 +20,6 @@ import { createCommunitySchema } from '@/app/_utils/zodSchemas'
 
 function Banner( { updateCommList } ) {
 
-  const [name, setName] = useState(null)
-  const [description, setDescription] = useState(null)
-
   const { user: user } = useSession().data || {};
 
   const { toast }  = useToast();
@@ -33,9 +30,11 @@ function Banner( { updateCommList } ) {
   })
 
   const handleCreate = async (e) => {
+
+    console.log(e)
     const data = {
-      communityName: name,
-      description: description,
+      communityName: e.name,
+      description: e.description,
       createdBy: user.userId
     }
 
@@ -75,7 +74,7 @@ function Banner( { updateCommList } ) {
             <DialogHeader>
               <DialogTitle>Crie sua comunidade</DialogTitle>
               <DialogDescription>
-                <form onSubmit={handleSubmit((e) => handleCreate(e) )}>
+                <form onSubmit={handleSubmit((e) => handleCreate(e))}>
                 <div className='flex flex-col justify-end'>
                   <div className='flex items-center justify-start gap-2 text-black font-bold'>
                     <h2 className='text-[18px]'>Nome</h2>
@@ -91,7 +90,7 @@ function Banner( { updateCommList } ) {
                   </div>
                   <div className='flex justify-center'>
                     <DialogClose asChild>
-                      <Button className="w-1/3 flex justify-center" onClick={handleCreate} disabled={Object.keys(errors).length !== 0}>Criar comunidade</Button> 
+                      <Button className="w-1/3 flex justify-center" type="submit" disabled={Object.keys(errors).length !== 0}>Criar comunidade</Button> 
                     </DialogClose>
                   </div>
                 </div>

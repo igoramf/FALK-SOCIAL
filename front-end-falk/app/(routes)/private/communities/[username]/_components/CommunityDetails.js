@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import sem_foto from "../../../../../../public/sem-foto.jpg"
 import Image from 'next/image'
-import { CalendarDays } from 'lucide-react'
+import { CalendarDays, Pencil } from 'lucide-react'
 import { Button } from '@/components/ui/button';
+import { useSession } from 'next-auth/react';
+import EditCommunity from './editCommunity';
+
 
 function CommunityDetails( {content} ) {
+    const { user: user } = useSession().data || {};
 
     const [selecionado, setSelecionado] = useState('posts');
 
@@ -26,13 +30,17 @@ function CommunityDetails( {content} ) {
   return (
     <div className='flex flex-col bg-slate-200 h-96'>
         <div className='flex bg-slate-400 h-36 border-b-4'>
-            Capa
+            
         </div>
         <div className='flex flex-col justify-end p-3'>
             <div className='flex flex-col pt-0'>
                 <div className='flex flex-row justify-between'>
                     <div className='flex h-32 w-32 bg-slate-700 p-1 rounded mt-[-60px]'><Image src={sem_foto}></Image></div>
-                    <div><Button className="bg-blue-500">Participar</Button></div>
+                    <div>{
+                        content?.createdBy != user?.userId ? 
+                        <Button className="bg-blue-500">Seguir</Button>
+                        : <EditCommunity trigger={<Pencil/>} userId={content?._id} profileImg={""}></EditCommunity>
+                    }</div>
                 </div>
                 <div>
                     <div className='font-bold'>{content?.communityName}</div>
