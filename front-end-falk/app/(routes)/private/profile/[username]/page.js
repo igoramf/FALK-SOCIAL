@@ -11,17 +11,19 @@ function page( { params } ) {
   const [postList, setPostList] = useState([])
 
   const fecthUser = async () => {
-    const userData = await getUser(params.id)
+    const userData = await getUser(params.username)
     setUser(userData.data)
   }
 
   useEffect(() => {
     fecthUser()
-    getPosts()
+    if(user){
+      getPosts()
+    }
   },[params])
 
   const getPosts = async () => {
-    const userPosts = await getUserPosts(params.id)
+    const userPosts = await getUserPosts(params.username)
     setPostList(userPosts.data.data)
   }
   

@@ -12,7 +12,7 @@ function page() {
   const router = useRouter()
 
   const routerToDetails = () => {
-    router.push(`profile/${user.userId}`)
+    router.push(`profile/${user.user}`)
   }
 
   useEffect(() => {

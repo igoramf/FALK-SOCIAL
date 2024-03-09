@@ -3,7 +3,7 @@ import sem_foto from "../../../../../../public/sem-foto.jpg"
 import Image from 'next/image'
 import { CalendarDays, Pencil } from 'lucide-react'
 import { Button } from '@/components/ui/button';
-import dateToText from "../../../../../../app/_utils/dateToText"
+import dateToText from "../../../../../_utils/dateToText"
 import { useSession } from 'next-auth/react';
 import EditProfile from './editProfile';
 
