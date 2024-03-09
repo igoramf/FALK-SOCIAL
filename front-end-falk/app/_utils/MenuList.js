@@ -1,4 +1,4 @@
-import { Home, LayoutGrid, Rocket, Settings, User } from "lucide-react";
+import { Home, LayoutGrid, Rocket, Settings, User, Users } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 
@@ -13,7 +13,7 @@ export default[
         id:2,
         name:'Comunidades',
         path:'/private/communities',
-        icon:Rocket
+        icon: Users
     },
     /*{
         id:3,
@@ -22,15 +22,15 @@ export default[
         icon:LayoutGrid
     },*/
     {
-        id:4,
+        id:3,
         name:'Perfil',
         path:'/private/profile/',
         icon: User
     },
-    {
-        id:5,
-        name:'Configurações',
-        path:'/private/settings',
-        icon:Settings
-    },
+    // {
+    //     id:5,
+    //     name:'Configurações',
+    //     path:'/private/settings',
+    //     icon:Settings
+    // },
 ]

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import userImg from '../../../../public/sem-foto.jpg'
+import sem_foto from '../../../../public/sem-foto.jpg'
 import moment from 'moment'
 import { useSession } from 'next-auth/react';
 import { likePost } from '@/services/postFunctions';
@@ -66,7 +66,7 @@ function PostItem( { post, updatePostList } ) {
 
     }
 
-    const profileImg = user?.profile_pic ? user.profile_pic : sem_foto.src
+    const profileImg = post?.createdBy.profile_pic ? post?.createdBy.profile_pic : sem_foto.src
 
 
     return (
@@ -130,7 +130,7 @@ function PostItem( { post, updatePostList } ) {
             {user && (
                 <div className='mt-5 flex gap-4 items-center'>
                     <hr className='mb-5'></hr>
-                    <Image src={userImg} width={30} height={30} alt="user-image"
+                    <img src={profileImg} width={30} height={30} alt="user-image"
                     className='rounded-full '
                     />
                     <Input 
