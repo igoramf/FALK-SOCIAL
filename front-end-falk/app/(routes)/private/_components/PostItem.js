@@ -73,7 +73,7 @@ function PostItem( { post, updatePostList } ) {
         <div className='p-5 border rounded-lg my-5'>
             <div className='flex gap-2 items-center'>
                 <img src={profileImg} alt='user-image' width={35} height={35} 
-                className='rounded-full'/>
+                className='rounded-full' style={{ maxWidth: '100%', maxHeight: '100%' }}/>
                 <div>
                     <h2 className='font-bold'>{post.createdBy?.name}</h2>
                     <h2 className='text-[12px] text-gray-400'>{moment(post?.createdAt).format('DD MMM YY | hh:mm A')}</h2>
