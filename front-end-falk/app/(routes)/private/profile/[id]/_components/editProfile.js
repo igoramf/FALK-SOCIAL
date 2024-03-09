@@ -29,6 +29,8 @@ function EditProfile({ trigger, userId, profileImg }) {
 
   }
 
+
+  // TO-DO edit more info
   const handleSubmit = () => ""
 
   return (

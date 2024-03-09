@@ -66,11 +66,13 @@ function PostItem( { post, updatePostList } ) {
 
     }
 
+    const profileImg = user?.profile_pic ? user.profile_pic : sem_foto.src
+
 
     return (
         <div className='p-5 border rounded-lg my-5'>
             <div className='flex gap-2 items-center'>
-                <Image src={userImg} alt='user-image' width={35} height={35} 
+                <img src={profileImg} alt='user-image' width={35} height={35} 
                 className='rounded-full'/>
                 <div>
                     <h2 className='font-bold'>{post.createdBy?.name}</h2>

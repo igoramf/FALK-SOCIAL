@@ -34,7 +34,8 @@ const authOptions = {
                     email: user.email,
                     name: user.name,
                     phone: user.phone,
-                    username: user.user
+                    username: user.user,
+                    profile_pic: user.profile_pic
                   }
                   
               return obj
@@ -53,7 +54,8 @@ const authOptions = {
                 userId: token.userId,
                 user: token.username,
                 authToken: token.authToken,
-                phone: token.phone
+                phone: token.phone,
+                profile_pic: token.profile_pic
               }
             }
           }

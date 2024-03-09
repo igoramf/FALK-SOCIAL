@@ -6,19 +6,20 @@ import { Button } from "./button";
 
 const LoginDropdown = () => {
 
-    const { data: session } = useSession()
-
     const [isActive, setIsActive] = useState(false);
 
     const handleIsActive = () => setIsActive(false);
 
     // IA FAZER UM DROPDOWN MENU MAS ACHEI QUE NAO FAZ MT SENTIDO
 
+    const { user: user } = useSession().data || {};
+    const profileImg = user?.profile_pic ? user.profile_pic : semFoto.src
+
     return (
         <div>
-            {session ?
+            {user ?
                 <div onClick={handleIsActive} className="flex items-center justify-center bg-slate-400 h-12 w-12 rounded-lg hover:cursor-pointer">
-                    <Image className="rounded-full" width={30} height={20} src={semFoto.src} alt="perfilImg"></Image>
+                    <img className="rounded-full" width={30} height={20} src={profileImg} alt="perfilImg"></img>
                 </div>
                 :
                 <Button className="mt-3 bg-blue-500">Get Started</Button>
