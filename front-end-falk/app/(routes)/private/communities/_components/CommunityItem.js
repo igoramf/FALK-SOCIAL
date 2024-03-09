@@ -11,7 +11,7 @@ function CommunityItem( { content } ) {
 
 
   const routerToDetails = () => {
-    router.push(`communities/${content._id}`)
+    router.push(`communities/${content.communityName}`)
   }
 
   return (

@@ -14,7 +14,7 @@ function page( { params } ) {
   const [comm, setComm] = useState(null)
 
   const fetchComm = async () => {
-    const community = await getOneCommunity(user.authToken, params.id)
+    const community = await getOneCommunity(params.username)
     setComm(community.data.data)
   }
 
@@ -29,7 +29,7 @@ function page( { params } ) {
   
   
   const getPosts = async () => {
-    const posts = await getPostsByCommunity(user.authToken, comm._id)
+    const posts = await getPostsByCommunity(params.username)
     setPostList(posts.data.data)
   }
   

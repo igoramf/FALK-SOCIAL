@@ -23,22 +23,18 @@ export const getAllCommunity = async(token) => {
     return response
 }
 
-export const getOneCommunity = async(token, id) => {
+export const getOneCommunity = async(username) => {
     try {
-        const response = api.get(`/community/${id}`,  {
-            headers: { authorization: token },
-        })
+        const response = api.get(`/community/${username}`)
         return response
     } catch (error) {
         return null
     }
 }
 
-export const getPostsByCommunity = async(token, id) => {
+export const getPostsByCommunity = async(username) => {
     try {
-        const response = api.get(`/post/community/${id}`,  {
-            headers: { authorization: token },
-        })
+        const response = api.get(`/post/community/${username}`)
         return response
     } catch (error) {
         return null
