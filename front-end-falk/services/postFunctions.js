@@ -1,12 +1,22 @@
 import api from "@/app/_utils/api"
 
-export const createPost = async (token, data) => {
-    
+export const createPost = async ( data, file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('createdBy', data.createdBy);
+    formData.append('text', data.text)
+    if(data.community){
+        formData.append('community')
+    }
+
+
     const response = await api.post(
         '/post/create',
-        data,
+        formData,
         {
-            headers: { authorization: token },
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         }
     )
 

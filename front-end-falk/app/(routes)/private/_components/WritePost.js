@@ -8,6 +8,8 @@ import { useState }  from "react";
 import { useToast } from '@/components/ui/use-toast';
 import { Input } from '@/components/ui/input';
 
+//TO-DO componente de loading para imagem
+
 
 function WritePost({ getAllPost, community }) {
     const { user: user } = useSession().data || {};
@@ -29,11 +31,13 @@ function WritePost({ getAllPost, community }) {
         }
 
 
-        let response = await createPost(user.authToken, data);
+        let response = await createPost(data, file);
         
         if(response.status == 201){
             setText("");
             getAllPost();
+            setFile(null)
+            setImageUrl(null)
             toast({
                 title: "Boaaa!",
                 description: "Post Salvo com sucesso",
