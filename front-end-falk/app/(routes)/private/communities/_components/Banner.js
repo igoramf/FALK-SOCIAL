@@ -31,7 +31,6 @@ function Banner( { updateCommList } ) {
 
   const handleCreate = async (e) => {
 
-    console.log(e)
     const data = {
       communityName: e.name,
       description: e.description,
@@ -69,7 +68,7 @@ function Banner( { updateCommList } ) {
           <h2 className='font-bold text-[29px] '>Espaço das comunidades</h2>
           <h2 className=''>Crie a sua comunidade para compartilhar coisas lá!!</h2>
           <Dialog>
-          <DialogTrigger><Button className="mt-3 bg-blue-500">Criar Comunidade</Button></DialogTrigger>
+          <DialogTrigger className='mt-3 bg-blue-500 p-3 rounded-sm text-white'>Criar Comunidade</DialogTrigger>
           <DialogContent className="bg-slate-100">
             <DialogHeader>
               <DialogTitle>Crie sua comunidade</DialogTitle>
