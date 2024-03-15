@@ -82,6 +82,13 @@ function PostItem( { post, updatePostList } ) {
             <div className=' bg-slate-100 p-3 mt-4 rounded-lg'>
                 <h2 className='text-[14px]'>{post.text}</h2>
             </div>
+            {
+                post?.imageUrl && 
+                    <div className='flex items-center justify-center h-96 w-full bg-slate-100 p-3'>
+                        <img src={post.imageUrl} className='h-auto max-h-full max-w-full' ></img>
+                    </div>
+                
+            }
             <div className='flex gap-8 text-gray-500 mt-4'>
                 <div className='flex flex-row gap-2 items-center'>
                     {!checkIsUserLike(post?.likes) ? 
